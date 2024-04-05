@@ -1,0 +1,254 @@
+@import "https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap";
+
+
+*{
+    padding: 0;
+    text-decoration: none;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+    font-family: Montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-flow-smoothing: antialiased;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    padding: 10px;
+}
+
+.sidebar {
+    width: 300px;
+    height: 100%;
+    background-color: #222;
+    border-radius: 14px;
+    padding: 0 14px 14px;
+    color: white;
+    position: relative;
+    transition: 230ms width;
+    display: flex;
+    flex-direction: column;
+
+    .toggle {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        color: #fff;
+        align-items: center;
+        justify-content: center;
+        background-color: #289df7;
+        position: absolute;
+        top: 16px;
+        left: 100%;
+        translate: -50%;
+        cursor: pointer;
+        svg {
+            transition: 400ms rotate;
+            rotate: 180deg;
+        }
+    }
+
+    .header {
+        display: flex;
+        align-items: center;
+        padding: 14px 0;
+        font-size: 18px;
+        font-weight: 600;
+        gap: 10px;
+
+        img {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+        }
+
+    }
+
+    .search {
+        position: relative;
+        display: block;
+        label{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(245, 184, 184, .1);
+            z-index: 1;
+            display: none;
+        }
+        .icon {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            svg {
+                width: 24px;
+                height: 24px;
+            }
+        }
+        input {
+            width: 100%;
+            height: 40px;
+            background-color: rgba(255, 255, 255, .2);
+            border-radius: 4px;
+            outline: none;
+            padding: 0 12px 0 40px;
+            font-size: 14px;
+            color: #fff;
+        }
+    }
+
+
+    .menu {
+        margin-top: 4px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        a {
+            display: flex;
+            height: 40px;
+            border-radius: 4px;
+            align-items: center;
+            color: #fff;
+            &:where(:hover, .active) {
+                background-color: rgba(255, 255, 255, .1);
+            }
+            .icon {
+                width: 40px;
+                height: 40px;
+                display: flex;
+                flex-shrink: 0;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                
+                &::before {
+                    content: attr(title);
+                    position: absolute;
+                    top: 50%;
+                    left: 100%;
+                    translate: 20px -50%;
+                    background-color: #111;
+                    padding: 3px 5px;
+                    font-size: 12px;
+                    border-radius: 4px;
+                    white-space: nowrap;
+                    opacity: 0;
+                    visibility: hidden;
+                    transition: 230ms opacity;
+                }
+
+                &::after {
+                    content: '';
+                    border: 4px solid transparent;
+                    border-right-color: #111;
+                    position: absolute;
+                    top: 50%;
+                    left: 100%;
+                    translate: 12px -50%;
+                    opacity: 0;
+                    visibility: hidden;
+                }
+
+                svg {
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+        }
+    }
+
+
+    .user {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: auto;
+        svg {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        .name {
+            font-size: 14px;
+
+        }
+        .email {
+            font-size: 12px;
+            color: rgba(255, 255, 255, .5);
+        }
+
+        button {
+            margin-left: auto;
+            width: 36px;
+            margin-right: -14px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+            color: #f8c9c9;
+            cursor: pointer;
+            svg {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    }
+
+    .hidden {
+        opacity: 1;
+        visibility: visible;
+        white-space: nowrap;
+        transition: 230ms opacity, 230ms visibility;
+    }
+
+
+
+    &:has(input[name="open-close"]:checked) {
+        width: 68px;
+
+        .hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .toggle {
+            width: 30px;
+            height: 30px;
+            svg {
+                transition: 400ms rotate;
+                rotate: 0deg;
+            }
+
+        }
+
+        .search label {
+            display: block;
+        }
+
+        .menu .icon {
+            &:hover::before, &:hover::after {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        .search input {
+            padding-right: 0;
+        }
+    }
+
+    input[name= "open-close"]{
+        display: none;
+    }
+}
